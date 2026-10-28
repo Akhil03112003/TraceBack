@@ -1,0 +1,88 @@
+{
+  "method": "majority-class baseline",
+  "prediction_class": "Normal",
+  "target_positive_class": "Anomaly",
+  "dataset": {
+    "path": "C:\\Users\\akhil\\Downloads\\HDFS_v1\\preprocessed\\anomaly_label.csv",
+    "source_file": "anomaly_label.csv",
+    "label_column": "Label",
+    "identifier_column": "BlockId",
+    "records": 575061,
+    "label_counts": {
+      "Normal": 558223,
+      "Anomaly": 16838
+    }
+  },
+  "split": {
+    "policy": "stratified random split by normalized label; no model fitting",
+    "seed": 42,
+    "test_fraction": 0.2,
+    "train_records": 460048,
+    "test_records": 115013,
+    "test_label_counts": {
+      "Normal": 111645,
+      "Anomaly": 3368
+    }
+  },
+  "whole_dataset": {
+    "evaluated_records": 575061,
+    "accuracy": 0.9707196280046813,
+    "anomaly_precision": 0.0,
+    "anomaly_recall": 0.0,
+    "anomaly_f1": 0.0,
+    "confusion_matrix_class_order": [
+      "Normal",
+      "Anomaly"
+    ],
+    "confusion_matrix": [
+      [
+        558223,
+        0
+      ],
+      [
+        16838,
+        0
+      ]
+    ],
+    "actual_label_counts": {
+      "Normal": 558223,
+      "Anomaly": 16838
+    },
+    "predicted_label_counts": {
+      "Normal": 575061
+    }
+  },
+  "held_out_test": {
+    "evaluated_records": 115013,
+    "accuracy": 0.9707163538034831,
+    "anomaly_precision": 0.0,
+    "anomaly_recall": 0.0,
+    "anomaly_f1": 0.0,
+    "confusion_matrix_class_order": [
+      "Normal",
+      "Anomaly"
+    ],
+    "confusion_matrix": [
+      [
+        111645,
+        0
+      ],
+      [
+        3368,
+        0
+      ]
+    ],
+    "actual_label_counts": {
+      "Normal": 111645,
+      "Anomaly": 3368
+    },
+    "predicted_label_counts": {
+      "Normal": 115013
+    }
+  },
+  "limitations": [
+    "The predictor never inspects features and always predicts Normal.",
+    "BlockId and Label are evaluation metadata, not prediction features.",
+    "The held-out split is recorded for consistent future detector comparisons."
+  ]
+}

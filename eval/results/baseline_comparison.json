@@ -1,0 +1,286 @@
+{
+  "schema_version": 1,
+  "dataset": {
+    "name": "HDFS_v1",
+    "records": 575061,
+    "label_counts": {
+      "Normal": 558223,
+      "Anomaly": 16838
+    },
+    "class_order": [
+      "Normal",
+      "Anomaly"
+    ]
+  },
+  "evaluation_split": {
+    "test_records": 115013,
+    "test_label_counts": {
+      "Normal": 111645,
+      "Anomaly": 3368
+    },
+    "seed": 42,
+    "test_fraction": 0.2,
+    "test_id_sha256": "9bb8bb56d14f0fd495c37db45727e913561c28250489a3c10fb9091da277a2d4",
+    "train_id_sha256": "bd6f609d5943979202bbf09b8fdd3a911d901015473eaa2e39116a7c93c08cb2",
+    "hashes_available_in_source_artifacts": {
+      "majority": false,
+      "rule_based": true,
+      "isolation_forest": true
+    },
+    "majority_split_hash_note": "The majority artifact stores split seed/counts but no ID hash; its split metadata matches the hash-bearing artifacts."
+  },
+  "baselines": [
+    {
+      "name": "majority",
+      "method": "majority-class baseline",
+      "methodology": "Always predicts Normal; labels are evaluation targets only.",
+      "limitations": [
+        "The predictor never inspects features and always predicts Normal.",
+        "BlockId and Label are evaluation metadata, not prediction features.",
+        "The held-out split is recorded for consistent future detector comparisons."
+      ],
+      "feature_policy": "No features; always predicts Normal",
+      "metrics": {
+        "accuracy": 0.9707163538034831,
+        "anomaly_precision": 0.0,
+        "anomaly_recall": 0.0,
+        "anomaly_f1": 0.0
+      },
+      "true_negatives": 111645,
+      "false_positives": 0,
+      "false_negatives": 3368,
+      "true_positives": 0,
+      "confusion_matrix": [
+        [
+          111645,
+          0
+        ],
+        [
+          3368,
+          0
+        ]
+      ],
+      "configuration": {
+        "prediction_class": "Normal"
+      },
+      "runtime_seconds": null,
+      "verification": {
+        "metric_consistency": true,
+        "confusion_matrix_total": 115013,
+        "split_metadata_consistency": true,
+        "test_split_hash": null,
+        "train_split_hash": null,
+        "metrics": {
+          "accuracy": 0.9707163538034831,
+          "anomaly_precision": 0.0,
+          "anomaly_recall": 0.0,
+          "anomaly_f1": 0.0
+        },
+        "confusion_matrix": [
+          [
+            111645,
+            0
+          ],
+          [
+            3368,
+            0
+          ]
+        ],
+        "test_records": 115013,
+        "split_hash_consistency": true,
+        "passed_all_verification_checks": true
+      }
+    },
+    {
+      "name": "rule_based",
+      "method": "deterministic rule-based baseline",
+      "methodology": "Training-only rule selection over event-presence candidates; frozen rule evaluated on the held-out split.",
+      "limitations": [
+        "The rule family is selected from a small predefined candidate set.",
+        "Event presence is interpretable but does not establish causality.",
+        "The NPZ is not used and no records are joined by row position."
+      ],
+      "feature_policy": "E1-E29 event counts; excludes BlockId, Label, Type",
+      "metrics": {
+        "accuracy": 0.9914096667333258,
+        "anomaly_precision": 0.8782581055308328,
+        "anomaly_recall": 0.8203681710213777,
+        "anomaly_f1": 0.8483266809947805
+      },
+      "true_negatives": 111262,
+      "false_positives": 383,
+      "false_negatives": 605,
+      "true_positives": 2763,
+      "confusion_matrix": [
+        [
+          111262,
+          383
+        ],
+        [
+          605,
+          2763
+        ]
+      ],
+      "configuration": {
+        "rule": "anomaly_associated_event_presence",
+        "event_ids": [
+          "E6",
+          "E7",
+          "E10",
+          "E12",
+          "E13",
+          "E14",
+          "E15",
+          "E17",
+          "E18",
+          "E19",
+          "E20",
+          "E24",
+          "E25",
+          "E27",
+          "E28",
+          "E29"
+        ],
+        "threshold": 1
+      },
+      "runtime_seconds": 11.821775499964133,
+      "verification": {
+        "metric_consistency": true,
+        "confusion_matrix_total": 115013,
+        "split_metadata_consistency": true,
+        "test_split_hash": "9bb8bb56d14f0fd495c37db45727e913561c28250489a3c10fb9091da277a2d4",
+        "train_split_hash": "bd6f609d5943979202bbf09b8fdd3a911d901015473eaa2e39116a7c93c08cb2",
+        "metrics": {
+          "accuracy": 0.9914096667333258,
+          "anomaly_precision": 0.8782581055308328,
+          "anomaly_recall": 0.8203681710213777,
+          "anomaly_f1": 0.8483266809947805
+        },
+        "confusion_matrix": [
+          [
+            111262,
+            383
+          ],
+          [
+            605,
+            2763
+          ]
+        ],
+        "test_records": 115013,
+        "split_hash_consistency": true,
+        "passed_all_verification_checks": true
+      }
+    },
+    {
+      "name": "isolation_forest",
+      "method": "Isolation Forest unsupervised baseline",
+      "methodology": "Isolation Forest fitted without labels; score threshold selected with labels on a validation subset inside training.",
+      "limitations": [
+        "The score threshold is selected with labels on a validation subset inside training.",
+        "The model uses only event counts and does not establish causal explanations.",
+        "No model pickle is persisted; rerunning refits the fixed configuration."
+      ],
+      "feature_policy": "E1-E29 event counts; excludes BlockId, Label, Type",
+      "metrics": {
+        "accuracy": 0.9845756566648988,
+        "anomaly_precision": 0.8529672276350753,
+        "anomaly_recall": 0.5718527315914489,
+        "anomaly_f1": 0.6846782794169924
+      },
+      "true_negatives": 111313,
+      "false_positives": 332,
+      "false_negatives": 1442,
+      "true_positives": 1926,
+      "confusion_matrix": [
+        [
+          111313,
+          332
+        ],
+        [
+          1442,
+          1926
+        ]
+      ],
+      "configuration": {
+        "model": {
+          "class": "sklearn.ensemble.IsolationForest",
+          "n_estimators": 100,
+          "max_samples": 256,
+          "contamination": "auto",
+          "random_state": 42,
+          "n_jobs": -1
+        },
+        "threshold": {
+          "quantile": 0.02,
+          "threshold": -0.6722511720720701,
+          "metrics": {
+            "evaluated_records": 92010,
+            "accuracy": 0.9851320508640365,
+            "anomaly_precision": 0.8599348534201955,
+            "anomaly_recall": 0.5879732739420935,
+            "anomaly_f1": 0.6984126984126984,
+            "confusion_matrix_class_order": [
+              "Normal",
+              "Anomaly"
+            ],
+            "confusion_matrix": [
+              [
+                89058,
+                258
+              ],
+              [
+                1110,
+                1584
+              ]
+            ],
+            "true_negatives": 89058,
+            "false_positives": 258,
+            "false_negatives": 1110,
+            "true_positives": 1584,
+            "actual_label_counts": {
+              "Normal": 89316,
+              "Anomaly": 2694
+            },
+            "predicted_label_counts": {
+              "Normal": 90168,
+              "Anomaly": 1842
+            }
+          }
+        }
+      },
+      "runtime_seconds": 9.243124300031923,
+      "verification": {
+        "metric_consistency": true,
+        "confusion_matrix_total": 115013,
+        "split_metadata_consistency": true,
+        "test_split_hash": "9bb8bb56d14f0fd495c37db45727e913561c28250489a3c10fb9091da277a2d4",
+        "train_split_hash": "bd6f609d5943979202bbf09b8fdd3a911d901015473eaa2e39116a7c93c08cb2",
+        "metrics": {
+          "accuracy": 0.9845756566648988,
+          "anomaly_precision": 0.8529672276350753,
+          "anomaly_recall": 0.5718527315914489,
+          "anomaly_f1": 0.6846782794169924
+        },
+        "confusion_matrix": [
+          [
+            111313,
+            332
+          ],
+          [
+            1442,
+            1926
+          ]
+        ],
+        "test_records": 115013,
+        "split_hash_consistency": true,
+        "passed_all_verification_checks": true
+      }
+    }
+  ],
+  "verification_summary": {
+    "all_three_artifacts_present_once": true,
+    "split_metadata_consistent": true,
+    "hash_bearing_artifacts_match": true,
+    "all_baseline_checks_passed": true
+  }
+}

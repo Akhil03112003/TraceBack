@@ -1,0 +1,2 @@
+# Phase 1 evaluation dependencies.
+scikit-learn>=1.4,<2

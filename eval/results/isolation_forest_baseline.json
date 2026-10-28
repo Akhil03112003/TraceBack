@@ -1,0 +1,505 @@
+{
+  "method": "Isolation Forest unsupervised baseline",
+  "target_positive_class": "Anomaly",
+  "feature_source": "C:\\Users\\akhil\\Downloads\\HDFS_v1\\preprocessed\\Event_occurrence_matrix.csv",
+  "features": [
+    "E1",
+    "E2",
+    "E3",
+    "E4",
+    "E5",
+    "E6",
+    "E7",
+    "E8",
+    "E9",
+    "E10",
+    "E11",
+    "E12",
+    "E13",
+    "E14",
+    "E15",
+    "E16",
+    "E17",
+    "E18",
+    "E19",
+    "E20",
+    "E21",
+    "E22",
+    "E23",
+    "E24",
+    "E25",
+    "E26",
+    "E27",
+    "E28",
+    "E29"
+  ],
+  "excluded_columns": [
+    "BlockId",
+    "Label",
+    "Type"
+  ],
+  "model": {
+    "class": "sklearn.ensemble.IsolationForest",
+    "n_estimators": 100,
+    "max_samples": 256,
+    "contamination": "auto",
+    "random_state": 42,
+    "n_jobs": -1
+  },
+  "threshold_selection": {
+    "method": "training-only validation score quantiles",
+    "validation_seed": 43,
+    "validation_fraction_of_training": 0.2,
+    "candidate_quantiles": [
+      0.001,
+      0.005,
+      0.01,
+      0.02,
+      0.05,
+      0.1,
+      0.2,
+      0.3,
+      0.5
+    ],
+    "selected": {
+      "quantile": 0.02,
+      "threshold": -0.6722511720720701,
+      "metrics": {
+        "evaluated_records": 92010,
+        "accuracy": 0.9851320508640365,
+        "anomaly_precision": 0.8599348534201955,
+        "anomaly_recall": 0.5879732739420935,
+        "anomaly_f1": 0.6984126984126984,
+        "confusion_matrix_class_order": [
+          "Normal",
+          "Anomaly"
+        ],
+        "confusion_matrix": [
+          [
+            89058,
+            258
+          ],
+          [
+            1110,
+            1584
+          ]
+        ],
+        "true_negatives": 89058,
+        "false_positives": 258,
+        "false_negatives": 1110,
+        "true_positives": 1584,
+        "actual_label_counts": {
+          "Normal": 89316,
+          "Anomaly": 2694
+        },
+        "predicted_label_counts": {
+          "Normal": 90168,
+          "Anomaly": 1842
+        }
+      }
+    },
+    "candidates": [
+      {
+        "quantile": 0.001,
+        "threshold": -0.7637366665103267,
+        "metrics": {
+          "evaluated_records": 92010,
+          "accuracy": 0.9717204651668296,
+          "anomaly_precision": 0.9693877551020408,
+          "anomaly_recall": 0.03526354862657758,
+          "anomaly_f1": 0.0680515759312321,
+          "confusion_matrix_class_order": [
+            "Normal",
+            "Anomaly"
+          ],
+          "confusion_matrix": [
+            [
+              89313,
+              3
+            ],
+            [
+              2599,
+              95
+            ]
+          ],
+          "true_negatives": 89313,
+          "false_positives": 3,
+          "false_negatives": 2599,
+          "true_positives": 95,
+          "actual_label_counts": {
+            "Normal": 89316,
+            "Anomaly": 2694
+          },
+          "predicted_label_counts": {
+            "Normal": 91912,
+            "Anomaly": 98
+          }
+        }
+      },
+      {
+        "quantile": 0.005,
+        "threshold": -0.7603117458855311,
+        "metrics": {
+          "evaluated_records": 92010,
+          "accuracy": 0.9777958917508967,
+          "anomaly_precision": 0.9939301972685888,
+          "anomaly_recall": 0.2431328878990349,
+          "anomaly_f1": 0.39069490008947216,
+          "confusion_matrix_class_order": [
+            "Normal",
+            "Anomaly"
+          ],
+          "confusion_matrix": [
+            [
+              89312,
+              4
+            ],
+            [
+              2039,
+              655
+            ]
+          ],
+          "true_negatives": 89312,
+          "false_positives": 4,
+          "false_negatives": 2039,
+          "true_positives": 655,
+          "actual_label_counts": {
+            "Normal": 89316,
+            "Anomaly": 2694
+          },
+          "predicted_label_counts": {
+            "Normal": 91351,
+            "Anomaly": 659
+          }
+        }
+      },
+      {
+        "quantile": 0.01,
+        "threshold": -0.7414553898523912,
+        "metrics": {
+          "evaluated_records": 92010,
+          "accuracy": 0.9828496902510596,
+          "anomaly_precision": 0.9818652849740933,
+          "anomaly_recall": 0.4220489977728285,
+          "anomaly_f1": 0.5903426791277259,
+          "confusion_matrix_class_order": [
+            "Normal",
+            "Anomaly"
+          ],
+          "confusion_matrix": [
+            [
+              89295,
+              21
+            ],
+            [
+              1557,
+              1137
+            ]
+          ],
+          "true_negatives": 89295,
+          "false_positives": 21,
+          "false_negatives": 1557,
+          "true_positives": 1137,
+          "actual_label_counts": {
+            "Normal": 89316,
+            "Anomaly": 2694
+          },
+          "predicted_label_counts": {
+            "Normal": 90852,
+            "Anomaly": 1158
+          }
+        }
+      },
+      {
+        "quantile": 0.02,
+        "threshold": -0.6722511720720701,
+        "metrics": {
+          "evaluated_records": 92010,
+          "accuracy": 0.9851320508640365,
+          "anomaly_precision": 0.8599348534201955,
+          "anomaly_recall": 0.5879732739420935,
+          "anomaly_f1": 0.6984126984126984,
+          "confusion_matrix_class_order": [
+            "Normal",
+            "Anomaly"
+          ],
+          "confusion_matrix": [
+            [
+              89058,
+              258
+            ],
+            [
+              1110,
+              1584
+            ]
+          ],
+          "true_negatives": 89058,
+          "false_positives": 258,
+          "false_negatives": 1110,
+          "true_positives": 1584,
+          "actual_label_counts": {
+            "Normal": 89316,
+            "Anomaly": 2694
+          },
+          "predicted_label_counts": {
+            "Normal": 90168,
+            "Anomaly": 1842
+          }
+        }
+      },
+      {
+        "quantile": 0.05,
+        "threshold": -0.5389321094438762,
+        "metrics": {
+          "evaluated_records": 92010,
+          "accuracy": 0.9706771003151832,
+          "anomaly_precision": 0.4995857497928749,
+          "anomaly_recall": 0.8953229398663697,
+          "anomaly_f1": 0.6413187981919702,
+          "confusion_matrix_class_order": [
+            "Normal",
+            "Anomaly"
+          ],
+          "confusion_matrix": [
+            [
+              86900,
+              2416
+            ],
+            [
+              282,
+              2412
+            ]
+          ],
+          "true_negatives": 86900,
+          "false_positives": 2416,
+          "false_negatives": 282,
+          "true_positives": 2412,
+          "actual_label_counts": {
+            "Normal": 89316,
+            "Anomaly": 2694
+          },
+          "predicted_label_counts": {
+            "Normal": 87182,
+            "Anomaly": 4828
+          }
+        }
+      },
+      {
+        "quantile": 0.1,
+        "threshold": -0.5057163266364338,
+        "metrics": {
+          "evaluated_records": 92010,
+          "accuracy": 0.9230518421910662,
+          "anomaly_precision": 0.2635324563295234,
+          "anomaly_recall": 0.9072011878247959,
+          "anomaly_f1": 0.4084224598930481,
+          "confusion_matrix_class_order": [
+            "Normal",
+            "Anomaly"
+          ],
+          "confusion_matrix": [
+            [
+              82486,
+              6830
+            ],
+            [
+              250,
+              2444
+            ]
+          ],
+          "true_negatives": 82486,
+          "false_positives": 6830,
+          "false_negatives": 250,
+          "true_positives": 2444,
+          "actual_label_counts": {
+            "Normal": 89316,
+            "Anomaly": 2694
+          },
+          "predicted_label_counts": {
+            "Normal": 82736,
+            "Anomaly": 9274
+          }
+        }
+      },
+      {
+        "quantile": 0.2,
+        "threshold": -0.4339239509065259,
+        "metrics": {
+          "evaluated_records": 92010,
+          "accuracy": 0.6900771655254864,
+          "anomaly_precision": 0.08157246564687581,
+          "anomaly_recall": 0.9342984409799554,
+          "anomaly_f1": 0.1500447093889717,
+          "confusion_matrix_class_order": [
+            "Normal",
+            "Anomaly"
+          ],
+          "confusion_matrix": [
+            [
+              60977,
+              28339
+            ],
+            [
+              177,
+              2517
+            ]
+          ],
+          "true_negatives": 60977,
+          "false_positives": 28339,
+          "false_negatives": 177,
+          "true_positives": 2517,
+          "actual_label_counts": {
+            "Normal": 89316,
+            "Anomaly": 2694
+          },
+          "predicted_label_counts": {
+            "Normal": 61154,
+            "Anomaly": 30856
+          }
+        }
+      },
+      {
+        "quantile": 0.3,
+        "threshold": -0.4339239509065259,
+        "metrics": {
+          "evaluated_records": 92010,
+          "accuracy": 0.6900771655254864,
+          "anomaly_precision": 0.08157246564687581,
+          "anomaly_recall": 0.9342984409799554,
+          "anomaly_f1": 0.1500447093889717,
+          "confusion_matrix_class_order": [
+            "Normal",
+            "Anomaly"
+          ],
+          "confusion_matrix": [
+            [
+              60977,
+              28339
+            ],
+            [
+              177,
+              2517
+            ]
+          ],
+          "true_negatives": 60977,
+          "false_positives": 28339,
+          "false_negatives": 177,
+          "true_positives": 2517,
+          "actual_label_counts": {
+            "Normal": 89316,
+            "Anomaly": 2694
+          },
+          "predicted_label_counts": {
+            "Normal": 61154,
+            "Anomaly": 30856
+          }
+        }
+      },
+      {
+        "quantile": 0.5,
+        "threshold": -0.32280055361060833,
+        "metrics": {
+          "evaluated_records": 92010,
+          "accuracy": 0.029279426149331593,
+          "anomaly_precision": 0.029279426149331593,
+          "anomaly_recall": 1.0,
+          "anomaly_f1": 0.05689305625950329,
+          "confusion_matrix_class_order": [
+            "Normal",
+            "Anomaly"
+          ],
+          "confusion_matrix": [
+            [
+              0,
+              89316
+            ],
+            [
+              0,
+              2694
+            ]
+          ],
+          "true_negatives": 0,
+          "false_positives": 89316,
+          "false_negatives": 0,
+          "true_positives": 2694,
+          "actual_label_counts": {
+            "Normal": 89316,
+            "Anomaly": 2694
+          },
+          "predicted_label_counts": {
+            "Anomaly": 92010
+          }
+        }
+      }
+    ],
+    "held_out_test_labels_used": false
+  },
+  "dataset": {
+    "label_path": "C:\\Users\\akhil\\Downloads\\HDFS_v1\\preprocessed\\anomaly_label.csv",
+    "occurrence_path": "C:\\Users\\akhil\\Downloads\\HDFS_v1\\preprocessed\\Event_occurrence_matrix.csv",
+    "records": 575061,
+    "label_counts": {
+      "Normal": 558223,
+      "Anomaly": 16838
+    }
+  },
+  "split": {
+    "policy": "Step 2 exact stratified split; validation split is nested within training only",
+    "seed": 42,
+    "test_fraction": 0.2,
+    "train_records": 460048,
+    "test_records": 115013,
+    "train_id_sha256": "bd6f609d5943979202bbf09b8fdd3a911d901015473eaa2e39116a7c93c08cb2",
+    "test_id_sha256": "9bb8bb56d14f0fd495c37db45727e913561c28250489a3c10fb9091da277a2d4",
+    "fit_records": 368038,
+    "validation_records": 92010,
+    "test_label_counts": {
+      "Normal": 111645,
+      "Anomaly": 3368
+    }
+  },
+  "fit": {
+    "fit_seconds": 0.3643651999300346,
+    "prediction_seconds": 0.4465538999065757,
+    "fit_used_labels": false
+  },
+  "held_out_test": {
+    "evaluated_records": 115013,
+    "accuracy": 0.9845756566648988,
+    "anomaly_precision": 0.8529672276350753,
+    "anomaly_recall": 0.5718527315914489,
+    "anomaly_f1": 0.6846782794169924,
+    "confusion_matrix_class_order": [
+      "Normal",
+      "Anomaly"
+    ],
+    "confusion_matrix": [
+      [
+        111313,
+        332
+      ],
+      [
+        1442,
+        1926
+      ]
+    ],
+    "true_negatives": 111313,
+    "false_positives": 332,
+    "false_negatives": 1442,
+    "true_positives": 1926,
+    "actual_label_counts": {
+      "Normal": 111645,
+      "Anomaly": 3368
+    },
+    "predicted_label_counts": {
+      "Normal": 112755,
+      "Anomaly": 2258
+    }
+  },
+  "runtime_seconds": 9.243124300031923,
+  "limitations": [
+    "The score threshold is selected with labels on a validation subset inside training.",
+    "The model uses only event counts and does not establish causal explanations.",
+    "No model pickle is persisted; rerunning refits the fixed configuration."
+  ]
+}

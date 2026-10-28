@@ -1,0 +1,17 @@
+.venv/
+venv/
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.coverage
+coverage.xml
+.env
+.env.*
+*.secret
+*.tmp
+*.log
+HDFS_v1/
+*.npz
+*.csv
+*.parquet
+eval/results/*.tmp
